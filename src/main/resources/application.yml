@@ -1,7 +1,9 @@
 spring:
+  profiles:
+    active: dev
   batch:
     job:
-      names: ${job.name:withParamJob}
+      names: ${job.name:NONE}
     jdbc:
       initialize-schema: ALWAYS
   datasource:
@@ -11,6 +13,8 @@ spring:
     password: 1234
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: create
 logging:
   level:
     com.ll.exam.spring_batch: debug
