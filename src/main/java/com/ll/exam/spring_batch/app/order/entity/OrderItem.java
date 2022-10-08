@@ -46,4 +46,22 @@ public class OrderItem extends BaseEntity {
         this.salePrice = productOption.getSalePrice();
         this.wholesalePrice = productOption.getWholesalePrice();
     }
+
+    public int calculatePayPrice() {
+        return salePrice * quantity;
+    }
+
+    public void setPaymentDone() {
+        this.payFee = 0;
+        this.payPrice = calculatePayPrice();
+        this.isPaid = true;
+    }
+
+    public void setRefundDone() {
+        if (refundQuantity == quantity) return;
+
+        this.refundQuantity = quantity;
+        this.refundPrice = payPrice;
+
+    }
 }

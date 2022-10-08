@@ -3,6 +3,7 @@ package com.ll.exam.spring_batch.app.order.service;
 import com.ll.exam.spring_batch.app.cart.entity.CartItem;
 import com.ll.exam.spring_batch.app.cart.service.CartService;
 import com.ll.exam.spring_batch.app.member.entity.Member;
+import com.ll.exam.spring_batch.app.member.service.MemberService;
 import com.ll.exam.spring_batch.app.order.entity.Order;
 import com.ll.exam.spring_batch.app.order.entity.OrderItem;
 import com.ll.exam.spring_batch.app.order.repository.OrderRepository;
@@ -20,8 +21,8 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class OrderService {
 
+    private final MemberService memberService;
     private final CartService cartService;
-
     private final OrderRepository orderRepository;
 
     @Transactional
@@ -57,5 +58,30 @@ public class OrderService {
         orderRepository.save(order);
 
         return order;
+    }
+
+    public void payByRestCashOnly(Order order) {
+        Member member = order.getMember();
+        long restCash = member.getRestCash();
+
+        int payPrice = order.calculatePayPrice();
+
+        if (restCash < payPrice) {
+            throw new RuntimeException("잔액 부족");
+        }
+
+        memberService.addCash(member, payPrice * -1, "주문결제__예치금결제");
+
+        order.setPaymentDone(order);
+        orderRepository.save(order);
+    }
+
+    @Transactional
+    public void refund(Order order) {
+        int payPrice = order.getPayPrice();
+        memberService.addCash(order.getMember(), payPrice, "주문환불__예치금환불");
+
+        order.setRefundDone();
+        orderRepository.save(order);
     }
 }

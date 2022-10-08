@@ -11,6 +11,7 @@ import org.aspectj.weaver.ast.Call;
 import javax.persistence.Entity;
 
 @Getter
+@Setter
 @Entity
 @SuperBuilder
 @NoArgsConstructor
@@ -22,4 +23,6 @@ public class Member extends BaseEntity {
     private String password;
 
     private String email;
+
+    private long restCash;
 }

@@ -35,4 +35,35 @@ public class Order extends BaseEntity {
 
         orderItems.add(orderItem);
     }
+
+    public int calculatePayPrice() {
+        int payPrice = 0;
+
+        for (OrderItem orderItem : orderItems) {
+            payPrice += orderItem.calculatePayPrice();
+        }
+
+        return payPrice;
+    }
+
+    public void setPaymentDone(Order order) {
+        for (OrderItem orderItem : orderItems) {
+            orderItem.setPaymentDone();
+        }
+    }
+
+    public void setRefundDone() {
+        for (OrderItem orderItem : orderItems) {
+            orderItem.setRefundDone();
+        }
+    }
+
+    public int getPayPrice() {
+        int payPrice = 0;
+        for (OrderItem orderItem : orderItems) {
+            payPrice += orderItem.getPayPrice();
+        }
+
+        return payPrice;
+    }
 }
