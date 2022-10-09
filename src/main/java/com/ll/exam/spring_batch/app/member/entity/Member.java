@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
-import org.aspectj.weaver.ast.Call;
 
 import javax.persistence.Entity;
 

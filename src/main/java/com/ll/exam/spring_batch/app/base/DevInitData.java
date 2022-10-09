@@ -77,7 +77,7 @@ public class DevInitData {
             Order order1 = helper.order(member1, Arrays.asList(
                             product1Option__RED_44,
                             product1Option__RED_44,
-                            product1Option__BLUE_44
+                            product1Option__BLUE_44 
                     )
             );
 

@@ -3,7 +3,7 @@ spring:
     active: dev
   batch:
     job:
-      names: ${job.name:NONE}
+      names: ${job.name:productBackupJob}
     jdbc:
       initialize-schema: ALWAYS
   datasource:

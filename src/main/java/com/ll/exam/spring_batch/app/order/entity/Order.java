@@ -9,7 +9,6 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

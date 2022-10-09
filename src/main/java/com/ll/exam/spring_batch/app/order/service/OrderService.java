@@ -9,7 +9,6 @@ import com.ll.exam.spring_batch.app.order.entity.OrderItem;
 import com.ll.exam.spring_batch.app.order.repository.OrderRepository;
 import com.ll.exam.spring_batch.app.product.entity.ProductOption;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
